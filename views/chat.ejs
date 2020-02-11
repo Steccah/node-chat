@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="../../socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  </head>
+  <body>
+    <div id="sidebar">
+      <p>Pino</p>
+      <p>Manego4L</p>
+      <p>Carrega</p>
+      <p>McStecca</p>
+    </div>
+    <div id="content">
+      <ul id="messages"></ul>
+      <form action="/" method="POST" id="chatForm">
+        <input id="txt" autocomplete="off" autofocus="on" oninput="isTyping()" placeholder="type your message here..." style="width: 80%;"/><button>Send</button>
+      </form>
+    </div>
+    <script>
+            var socket = io.connect('http://localhost:8080');
+
+            function write(item, index) {
+              $('#sidebar').append($('<li>').html(item));
+            }
+
+            //finto typing
+            function isTyping(){
+              socket.emit('is_typing');
+            }
+            
+            //finto typing
+            socket.on('ext_typing', function(msg){
+              $('#sidebar').append($('<li>').html(msg));
+            });
+
+            // submit text message without reload/refresh the page
+            $('form').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                socket.emit('chat_message', $('#txt').val());
+                $('#txt').val('');
+                return false;
+            });
+
+            // append the chat text message
+            socket.on('chat_message', function(msg){
+                $('#messages').append($('<li>').html(msg));
+            });
+
+            // append text if someone is online
+            socket.on('is_online', function(username) {
+                $('#messages').append($('<li>').html(username));
+            });
+
+            // ask username
+            var username = prompt('Please tell me your name');
+            socket.emit('username', username);
+
+            socket.on('onlinelist', function(onlinelist){
+              onlinelist.forEach(write);
+              $('#sidebar').append($('<br>'));
+            });
+
+    </script>
+  </body>
+</html>

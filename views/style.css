@@ -15,7 +15,7 @@ form {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-color: #000;
+    border-color: #687173;
     border-top-style: solid;
     border-top-width: 1px;
 }
@@ -24,16 +24,24 @@ form input {
     border-style: solid;
     border-width: 1px;
     padding: 10px;
-    width: 85%;
-    margin-right: .5%;
+    width: 40%;
+    margin: .5%;
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.1);
 }
 
 form button {
     width: 9%;
-    background: rgb(130, 224, 255);
+    background: #0070ba;
     border: none;
     padding: 10px;
-    margin-left: 2%;
+    border-radius: 10px;
+    color: white;
+}
+
+form button:hover{
+    background: #003087;
 }
 
 #messages {

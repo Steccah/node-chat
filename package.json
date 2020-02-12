@@ -2,7 +2,7 @@
   "name": "node-simple-group-chat",
   "version": "1.0.0",
   "description": "A simple group chat built using Node.js and Socket.io",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

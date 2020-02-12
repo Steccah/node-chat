@@ -30,7 +30,7 @@
             
             //typing esterno
             socket.on('ext_typing', function(msg){
-              document.getElementById("typing").innerHTML = "";
+              document.getElementById("typing").innerHTML = "";//reset per overwrite
               $('#typing').append($('<p>').html(msg));
                 setTimeout(function(){document.getElementById("typing").innerHTML = "";}, 3000);
             });

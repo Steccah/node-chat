@@ -20,14 +20,14 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('username', function(username) {
         socket.username = username;
-        io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
+        io.emit('is_online', '🔵 <i>' + socket.username + ' joined the chat</i>');
         onlinelist.push(socket.username);
         io.emit('onlinelist', onlinelist);
     });
 
 
     socket.on('disconnect', function(username) {
-        io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat..</i>');
+        io.emit('is_online', '🔴 <i>' + socket.username + ' leaved the chat</i>');
         //elimina chi non è più online
         for (var i = 0; i < onlinelist.length; i++) {
             if (onlinelist[i] == socket.username){

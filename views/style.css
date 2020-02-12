@@ -1,8 +1,14 @@
+@font-face {
+    font-family: PayPalSansSmall-Regular;
+    src: url(PayPal.ttf);
+  }
+
 body { margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font: 13px Helvetica, Arial;
+    font: 14px PayPalSansSmall-Regular;
 }
+
 form {
     background: #fff;
     padding: 3px;
@@ -13,6 +19,7 @@ form {
     border-top-style: solid;
     border-top-width: 1px;
 }
+
 form input {
     border-style: solid;
     border-width: 1px;
@@ -20,6 +27,7 @@ form input {
     width: 85%;
     margin-right: .5%;
 }
+
 form button {
     width: 9%;
     background: rgb(130, 224, 255);
@@ -27,18 +35,27 @@ form button {
     padding: 10px;
     margin-left: 2%;
 }
+
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
     position: relative;
 }
+
+#messages i {
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+}
+
 #messages li {
     padding: 5px 10px;
 }
+
 #messages li:nth-child(odd) {
     background: #f5f7fa;
 }
+
 #sidebar {
     float: left; 
     height: 100%;
@@ -48,6 +65,17 @@ form button {
     color: #fff;
     background-image: linear-gradient(150deg,#0070ba,#1546a0);
 }
+
+#sidebar li {
+    list-style-type: none;
+}
+
 #content {
     margin-left: 180px;
+}
+
+#typing {
+    bottom: 45px;
+    position: fixed;
+    width: 100%;
 }

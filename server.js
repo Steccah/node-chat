@@ -21,8 +21,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('username', function(username) {
         socket.username = username;
         io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
-        io.emit('onlinelist', onlinelist);
         onlinelist.push(socket.username);
+        io.emit('onlinelist', onlinelist);
     });
 
 

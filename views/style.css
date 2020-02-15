@@ -7,6 +7,7 @@ body { margin: 0;
     padding: 0;
     box-sizing: border-box;
     font: 14px PayPalSansSmall-Regular;
+    background: #f5f7fa;
 }
 
 form {
@@ -25,7 +26,7 @@ form input {
     border-width: 1px;
     padding: 10px;
     width: 40%;
-    margin: .5%;
+    margin: 2px;
     border-radius: 10px;
     border-color: transparent;
     box-shadow: 0 2px 1px 0 rgba(0,0,0,.1);
@@ -49,6 +50,7 @@ form button:hover{
     margin: 0;
     padding: 0;
     position: relative;
+	margin-bottom: 70px;
 }
 
 #messages i {
@@ -58,11 +60,15 @@ form button:hover{
 
 #messages li {
     padding: 5px 10px;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-left-radius: 4px;
+    margin: 5px;
+    width: 980px;
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.1);
+    background: white;
 }
 
-#messages li:nth-child(odd) {
-    background: #f5f7fa;
-}
 
 #sidebar {
     float: left; 
@@ -72,6 +78,7 @@ form button:hover{
     padding: 10px;
     color: #fff;
     background-image: linear-gradient(150deg,#0070ba,#1546a0);
+	top: 0px;
 }
 
 #sidebar li {
@@ -86,4 +93,8 @@ form button:hover{
     bottom: 45px;
     position: fixed;
     width: 100%;
+}
+
+#chatForm {
+    height: 45px;
 }

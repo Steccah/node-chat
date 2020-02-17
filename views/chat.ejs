@@ -12,15 +12,28 @@
     <div id="content">
       <ul id="messages"></ul>
       <div id="typing"></div>
-      <form action="/" method="POST" id="chatForm">
+      <form action="/" method="POST">
         <input id="txt" autocomplete="off" autofocus="on" oninput="isTyping()" placeholder="type your message here..."/><button>Send</button>
       </form>
     </div>
     <script>
             var socket = io.connect('http://localhost:8080');
 
-            function write(item, index) {
-              $('#sidebar').append($('<li>').html(item));
+            //ah non lo chiedere a me
+            function djb2(str){
+            var hash = 5381;
+            for (var i = 0; i < str.length; i++) {
+              hash = ((hash << 5) + hash) + str.charCodeAt(i); /* hash * 33 + c */
+            }
+              return hash;
+            }
+
+            function hashStringToColor(str) {
+              var hash = djb2(str);
+              var r = (hash & 0xFF0000) >> 16;
+              var g = (hash & 0x00FF00) >> 8;
+              var b = hash & 0x0000FF;
+              return ("0" + r.toString(16)).substr(-2) + ("0" + g.toString(16)).substr(-2) + ("0" + b.toString(16)).substr(-2);
             }
 
             //typing interno
@@ -44,8 +57,13 @@
             });
 
             // append the chat text message
-            socket.on('chat_message', function(msg){
-                $('#messages').append($('<li>').html(msg));
+            socket.on('chat_message', function(msg, username){
+                var cloudColor = hashStringToColor(username);
+                if(cloudColor.charCodeAt(0) < "6" && cloudColor.charCodeAt(2) < "6" && cloudColor.charCodeAt(4) < "6")
+                  var textColor = "white";
+                else
+                  var textColor = "black";
+                $('#messages').append($('<li style="background-color: #' + cloudColor + '; color: ' + textColor + ';">').html(msg));
             });
 
             // append text if someone is online
@@ -55,11 +73,14 @@
 
             // ask username
             var username = prompt('Please tell me your name');
+            document.title = username;
             socket.emit('username', username);
 
             socket.on('onlinelist', function(onlinelist){
               document.getElementById("sidebar").innerHTML = "";
-              onlinelist.forEach(write);
+              onlinelist.forEach(function (item, index) {
+                $('#sidebar').append($('<li>').html(item));
+            });
               $('#sidebar').append($('<br>'));
             });
 

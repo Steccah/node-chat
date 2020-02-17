@@ -39,7 +39,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('chat_message', function(message) {
-        io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message);
+        io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message, socket.username);
     });
 
     socket.on('is_typing', function(username){

@@ -56,10 +56,11 @@
                 return false;
             });
 
-            // append the chat text message
+            // append the chat text message and color it
             socket.on('chat_message', function(msg, username){
                 var cloudColor = hashStringToColor(username);
-                if(cloudColor.charCodeAt(0) < "6" && cloudColor.charCodeAt(2) < "6" && cloudColor.charCodeAt(4) < "6")
+                luminance = ( 0.299 * parseInt((cloudColor.charAt(0) + cloudColor.charAt(1)),16) + 0.587 * parseInt((cloudColor.charAt(2) + cloudColor.charAt(3)),16) + 0.114 * parseInt((cloudColor.charAt(4) + cloudColor.charAt(5)),16))/255;
+                if(luminance < 0.5)
                   var textColor = "white";
                 else
                   var textColor = "black";

@@ -74,6 +74,7 @@
 
             // ask username
             var username = prompt('Please tell me your name');
+            username = username.slice(0, 25);
             document.title = username;
             socket.emit('username', username);
 

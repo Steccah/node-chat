@@ -27,7 +27,7 @@ io.sockets.on('connection', function(socket) {
 
 
     socket.on('disconnect', function(username) {
-        io.emit('is_online', '🔴 <i>' + socket.username + ' leaved the chat</i>');
+        io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat</i>');
         //elimina chi non è più online
         for (var i = 0; i < onlinelist.length; i++) {
             if (onlinelist[i] == socket.username){
